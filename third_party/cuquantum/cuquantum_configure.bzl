@@ -111,6 +111,7 @@ def _symlink_genrule_for_dir(
         dest_files = [],
         is_empty_genrule = False):
     """Returns a genrule to symlink(or copy if on Windows) a set of files.
+
     If src_dir is passed, files will be read from the given directory; otherwise
     we assume files are in src_files and dest_files. Here are the examples:
     ```
