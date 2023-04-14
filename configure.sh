@@ -76,10 +76,11 @@ if [[ "$TF_NEED_CUDA" == "1" ]]; then
   echo "GPU is selected, default acceleration is CUDA for TFQuantum."
   echo "Searching cuQuantum library from environment variable CUQUANTUM_ROOT..."
   if [[ "$CUQUANTUM_ROOT" != "" ]]; then
-    echo "  [*] cuQuantum library is detected here: CUQUANTUM_ROOT=$CUQUANTUM_ROOT."
+    echo "  [*] cuQuantum library is detected here: CUQUANTUM_ROOT=${CUQUANTUM_ROOT}."
     write_action_env_to_bazelrc "CUQUANTUM_ROOT" ${CUQUANTUM_ROOT}
+    write_action_env_to_bazelrc "LD_LIBRARY_PATH" ${CUQUANTUM_ROOT}/lib:${LD_LIBRARY_PATH}
   else
-    echo "  [*] cuQuantum library is NOT detected. Using general CUDA ops..."
+    echo "  [*] cuQuantum library is NOT detected. Bazel will find it automatically..."
   fi
 fi
 
